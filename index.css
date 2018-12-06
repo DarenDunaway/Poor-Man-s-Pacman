@@ -1,0 +1,27 @@
+body {
+  background-color: rgb(54, 66, 140);
+}
+
+h1 {
+  font-size: 45px;
+  font-family: chalkduster;
+  color: red;
+}
+
+p {
+  font-size: 30px;
+  font-family: chalkduster;
+  color: yellow;
+}
+
+progress {
+  border: none;
+  width: 300px;
+  height: 30px;
+  background: black;
+}
+
+progress::-webkit-progress-value {
+  background: red;
+}
+
