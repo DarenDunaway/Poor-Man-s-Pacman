@@ -3,6 +3,8 @@ Project for CMSI 185
 
 https://codepen.io/DD05/pen/zMgaMx?editors=1111
 
+https://darendunaway.github.io/Poor-Man-s-Pacman/
+
 In this chaser style of the infamous game Pacman, your goal is to avoid the ghosts around you. If you feel bombarded by the ghosts, feel free to click your mouse and drop down a scarecrow, a shadow of of your player that draws away the ghosts for five seconds. Try to maintain your health bar for as long as possible and see how high your score can go!
 
 Game Components:
