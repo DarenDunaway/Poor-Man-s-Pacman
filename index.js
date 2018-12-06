@@ -56,7 +56,7 @@ class ghostCharacter {
   }
 }
 
-const [canvasWidth, canvasHeight] = [800, 800];
+const [canvasWidth, canvasHeight] = [800, 600];
 const player = new pacmanCharacter(400, 400, "yellow", 20, 0.035);
 const enemies = [];
 let scarecrow;
