@@ -57,7 +57,7 @@ class ghostCharacter {
 }
 
 const [canvasWidth, canvasHeight] = [800, 600];
-const player = new pacmanCharacter(400, 400, "yellow", 20, 0.035);
+const player = new pacmanCharacter(400, 400, "yellow", 20, 0.04);
 const enemies = [];
 let scarecrow;
 
@@ -108,7 +108,7 @@ function addGhost() {
   ];
   let color = ghostColors[Math.floor(Math.random() * ghostColors.length)];
   let size = 25;
-  let speed = Math.random() * 0.025 + 0.025;
+  let speed = Math.random() * 0.0175 + 0.0175;
   for (let i = 0; i < enemiesAdded; i++) {
     enemies.push(
       new ghostCharacter(
