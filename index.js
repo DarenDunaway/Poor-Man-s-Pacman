@@ -180,6 +180,3 @@ function draw() {
     gameOver();
   }
 }
-
-
-
