@@ -5,7 +5,7 @@ https://darendunaway.github.io/Poor-Man-s-Pacman/
 
 https://codepen.io/DD05/pen/GwVXOR?editors=1011
 
-In this chaser style game based off of the infamous game Pac-Man, your goal is to avoid the ghosts around you. If you feel bombarded by the ghosts, feel free to click your mouse and drop down a scarecrow, a shadow of of your player that draws away the ghosts for five seconds. Once your health decreases below 50, you have the ability to delete half of the enemies by clicking any key on the keyboard. However, with every use of this power your player speed slightly decreases. Try to maintain your health bar for as long as possible and see how high your score can go!
+In this chaser style game based off of the infamous game Pac-Man, your goal is to avoid the ghosts around you. If you feel bombarded by the ghosts, feel free to click your mouse and drop down a scarecrow, a shadow of of your player that draws away the ghosts for five seconds. Once your health decreases below 50, you have the ability to delete half of the enemies by clicking any key on the keyboard. However, with every use of this power your player speed slightly decreases. Try to maintain your health for as long as possible and see how high your score can go!
 
 Game Components:
   - 1 player designed through p5 shapes (follows the current mouse location)
