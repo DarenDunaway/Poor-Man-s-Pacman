@@ -1,18 +1,11 @@
 const healthBar = document.querySelector("progress");
-let counter = 0;
-let counterInMilliseconds = 0;
-let font = "chalkduster";
+const [canvasWidth, canvasHeight] = [800, 600];
+const font = "chalkduster";
 const fontsize = 60;
-let timePassedBy = 0;
 const ghostColors = ["red", "cyan", "pink", "orange"];
-
-function distanceBetween(player, enemy) {
-  return Math.hypot(player.x - enemy.x, player.y - enemy.y);
-}
-
-function playerCollision(player, enemy) {
-  return distanceBetween(player, enemy) < player.radius + enemy.radius;
-}
+let scoreCounter = 0;
+let counterInMilliseconds = 0;
+let timePassed = 0;
 
 class pacmanCharacter {
   constructor(x, y, color, radius, speed) {
@@ -56,10 +49,31 @@ class ghostCharacter {
   }
 }
 
-const [canvasWidth, canvasHeight] = [800, 600];
 const player = new pacmanCharacter(400, 400, "yellow", 20, 0.04);
-const enemies = [];
+let enemies = [];
 let scarecrow;
+
+function addGhost() {
+  const numberOfEnemiesAdded = 1;
+  let startLocation = [
+    Math.random() * canvasWidth,
+    Math.random() * canvasHeight
+  ];
+  let color = ghostColors[Math.floor(Math.random() * ghostColors.length)];
+  const size = 25;
+  let speed = Math.random() * 0.0175 + 0.0175;
+  for (let i = 0; i < numberOfEnemiesAdded; i++) {
+    enemies.push(
+      new ghostCharacter(
+        startLocation[0] + i,
+        startLocation[1],
+        color,
+        size,
+        speed
+      )
+    );
+  }
+}
 
 function adjustCharacterPosition() {
   const characters = [player, ...enemies];
@@ -84,6 +98,23 @@ function pushOff(c1, c2) {
   }
 }
 
+function distanceBetween(player, enemy) {
+  return Math.hypot(player.x - enemy.x, player.y - enemy.y);
+}
+
+function playerCollision(player, enemy) {
+  return distanceBetween(player, enemy) < player.radius + enemy.radius;
+}
+
+function increaseScore() {
+  const score = document.querySelector("#score");
+  counterInMilliseconds++;
+  if (counterInMilliseconds % 10 === 0) {
+    scoreCounter++;
+  }
+  score.innerHTML = scoreCounter;
+}
+
 function mouseClicked() {
   if (!scarecrow) {
     scarecrow = new pacmanCharacter(player.x, player.y, "white", 20);
@@ -93,52 +124,23 @@ function mouseClicked() {
 
 function keyPressed() {
   if (healthBar.value < 50) {
-    enemies.splice(0, enemies.length/2);
-    player.speed -= .005;
-  }
-}
-
-function increaseScore() {
-  const score = document.querySelector("#score");
-  counterInMilliseconds++;
-  if (counterInMilliseconds % 10 === 0) {
-    counter++;
-  }
-  score.innerHTML = counter;
-}
-
-function addGhost() {
-  let enemiesAdded = 1;
-  let startLocation = [
-    Math.random() * canvasWidth,
-    Math.random() * canvasHeight
-  ];
-  let color = ghostColors[Math.floor(Math.random() * ghostColors.length)];
-  let size = 25;
-  let speed = Math.random() * 0.0175 + 0.0175;
-  for (let i = 0; i < enemiesAdded; i++) {
-    enemies.push(
-      new ghostCharacter(
-        startLocation[0] + i,
-        startLocation[1],
-        color,
-        size,
-        speed
-      )
-    );
+    enemies.splice(0, enemies.length / 2);
+    player.speed -= 0.005;
   }
 }
 
 function gameOver() {
   fill("white");
   text("Game Over", 400, 300);
-  timePassedBy = 0;
   noLoop();
 }
 
 function setup() {
   createCanvas(canvasWidth, canvasHeight);
   noStroke();
+  textFont(font);
+  textSize(fontsize);
+  textAlign(CENTER, CENTER);
 
   addGhost(
     1,
@@ -147,10 +149,6 @@ function setup() {
     25,
     0.025
   );
-
-  textFont(font);
-  textSize(fontsize);
-  textAlign(CENTER, CENTER);
 }
 
 function draw() {
@@ -159,6 +157,16 @@ function draw() {
   player.move({ x: mouseX, y: mouseY });
   enemies.forEach(enemy => enemy.draw());
   enemies.forEach(enemy => enemy.move(scarecrow || player));
+  adjustCharacterPosition();
+  enemies.forEach(enemy => {
+    if (playerCollision(enemy, player)) {
+      healthBar.value -= 1;
+    }
+  });
+  timePassed++;
+  if ((Math.round(timePassed) / 10) % 15 === 0) {
+    addGhost();
+  }
   if (scarecrow) {
     scarecrow.draw();
     scarecrow.ttl--;
@@ -166,20 +174,12 @@ function draw() {
       scarecrow = undefined;
     }
   }
-  adjustCharacterPosition();
-  timePassedBy += 1;
-  if ((Math.round(timePassedBy) / 10) % 15 === 0) {
-    addGhost();
-  }
-  enemies.forEach(enemy => {
-    if (playerCollision(enemy, player)) {
-      healthBar.value -= 1;
-    }
-  });
   if (healthBar.value > 0) {
     increaseScore();
   } else {
     gameOver();
   }
 }
+
+
 
