@@ -129,8 +129,13 @@ function gameOver() {
   noLoop();
 }
 
+function preload() {
+  soundtrack = loadSound('soundtrack.mp3');
+}
+
 function setup() {
   createCanvas(canvasWidth, canvasHeight);
+  soundtrack.loop();
   noStroke();
 
   addGhost(
@@ -148,6 +153,7 @@ function setup() {
 
 function draw() {
   background("black");
+  soundtrack.play();
   player.draw();
   player.move({ x: mouseX, y: mouseY });
   enemies.forEach(enemy => enemy.draw());
