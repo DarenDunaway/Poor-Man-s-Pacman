@@ -1,11 +1,11 @@
 const healthBar = document.querySelector("progress");
 const [canvasWidth, canvasHeight] = [800, 600];
-const font = "chalkduster";
-const fontsize = 60;
 const ghostColors = ["red", "cyan", "pink", "orange"];
 let scoreCounter = 0;
 let counterInMilliseconds = 0;
 let timePassed = 0;
+const font = "chalkduster";
+const fontsize = 60;
 
 class pacmanCharacter {
   constructor(x, y, color, radius, speed) {
