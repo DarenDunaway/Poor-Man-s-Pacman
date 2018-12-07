@@ -91,6 +91,13 @@ function mouseClicked() {
   }
 }
 
+function keyPressed() {
+  if (healthBar.value < 50) {
+    enemies.splice(0, enemies.length/2);
+    player.speed -= .005;
+  }
+}
+
 function increaseScore() {
   const score = document.querySelector("#score");
   counterInMilliseconds++;
