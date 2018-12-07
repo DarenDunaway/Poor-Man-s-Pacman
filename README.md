@@ -14,8 +14,10 @@ Game Components:
   - Score that increases as time passes (reliant on the health bar value remaining over zero)
   - Scarecrow that draws enemy ghosts towards its position and away from the player (lasts five seconds)
   - Power-up that deletes half the enemies, but slows player speed slightly
+  - 1 button to restart the game
   
 Game Controls:
   - Mouse movement and location controls players movement
   - Mouse click adds a scarecrow
   - Key press that deletes half the enemy ghosts
+  - Clickable restart game button
