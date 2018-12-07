@@ -1,5 +1,6 @@
 body {
   background-color: rgb(54, 66, 140);
+  line-height: 1;
 }
 
 h1 {
@@ -8,7 +9,13 @@ h1 {
   color: red;
 }
 
-p {
+p1 {
+  font-size: 15px;
+  font-family: chalkduster;
+  color: white;
+}
+
+p2 {
   font-size: 30px;
   font-family: chalkduster;
   color: yellow;
@@ -24,4 +31,6 @@ progress {
 progress::-webkit-progress-value {
   background: red;
 }
+
+
 
